@@ -1,3 +1,7 @@
+.. image:: https://travis-ci.org/bibi21000/janitoo_mosquitto.svg?branch=master
+    :target: https://travis-ci.org/bibi21000/janitoo_mosquitto
+    :alt: Travis status
+
 ============================
 Welcome to janitoo_mosquitto
 ============================
