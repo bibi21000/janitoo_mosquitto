@@ -124,8 +124,8 @@ develop:
 	lsb_release -a
 	@echo "Install mosquitto for $(distro):$(codename)."
 ifeq ($(distro),Debian)
-	wget -qO - http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key | apt-key add -
-	cd /etc/apt/sources.list.d/ && wget http://repo.mosquitto.org/debian/mosquitto-$(codename).list
+	wget -qO - http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key | sudo apt-key add -
+	cd /etc/apt/sources.list.d/ && sudo wget http://repo.mosquitto.org/debian/mosquitto-$(codename).list
 endif
 ifeq ($(distro),Ubuntu)
 	sudo apt-get install python-software-properties
@@ -142,14 +142,13 @@ endif
 	sudo service mosquitto restart
 	sleep 2
 	cat /var/log/mosquitto/mosquitto.log|grep mosquitto
-	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
+	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded || echo "No service found"
 	@echo
 	@echo "Dependencies for ${MODULENAME} finished."
 
 travis-deps: deps
-	sudo apt-get -y install libevent-2.0-5 mosquitto
+	sudo apt-get -y install libevent-2.0-5
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
-	pip install coveralls
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
 
@@ -181,7 +180,7 @@ tar:
 	@echo
 	@echo "Archive for ${MODULENAME} version ${janitoo_version} created"
 
-commit: develop
+commit:
 	-git add rst/
 	-cp rst/README.rst .
 	-git add README.rst
