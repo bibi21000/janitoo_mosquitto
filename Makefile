@@ -153,7 +153,6 @@ travis-deps: deps
 	@echo "Travis dependencies for ${MODULENAME} installed."
 
 tests:
-	sudo service mosquitto restart
 	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
 	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 1883
 ifneq ($(codename),precise)
