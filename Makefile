@@ -153,6 +153,7 @@ travis-deps: deps
 	@echo "Travis dependencies for ${MODULENAME} installed."
 
 tests:
+	-netcat -zv 127.0.0.1 1-9999 2>/dev/null|grep succeeded
 	netcat -zv 127.0.0.1 1-9999 2>/dev/null|grep succeeded|grep 1883
 ifneq ($(codename),precise)
 	#No websocket for precise
