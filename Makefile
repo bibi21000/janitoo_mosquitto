@@ -152,6 +152,10 @@ travis-deps: deps
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
 
+docker-tests: tests
+	@echo
+	@echo "Docker tests for ${MODULENAME} finished."
+
 tests:
 	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
 	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 1883
