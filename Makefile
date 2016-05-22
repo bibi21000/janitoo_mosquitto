@@ -210,12 +210,11 @@ docker-tests:
 
 tests:
 	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
-	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 1883
-	$(NOSE) $(NOSEOPTS) tests
 #~ ifneq ($(codename),precise)
 	#~ #No websocket for precise
 	#~ netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 9001
 #~ endif
+	$(NOSE) $(NOSEOPTS) tests
 	@echo
 	@echo "Tests for ${MODULENAME} finished."
 

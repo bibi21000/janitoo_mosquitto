@@ -48,6 +48,6 @@ class TestMosquittoSerser(JNTTBase):
     ports = [1883]
 
     def test_001_connect_to_server(self):
-        JNTTBase.onlyDockerTest()
-        for port in self.ports:
-            self.assertTCP(self.host, port)
+        for host in self.ip4Addresses:
+            for port in self.ports:
+                self.assertTCP(host, port)
