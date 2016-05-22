@@ -167,10 +167,10 @@ ifeq ($(distro),Ubuntu)
 endif
 	sudo apt-get update
 	sudo apt-get install -y --force-yes mosquitto
-ifneq ($(codename),precise)
-	#No websocket for precise
-	sudo cp websockets.conf /etc/mosquitto/conf.d/
-endif
+#~ ifneq ($(codename),precise)
+	#~ #No websocket for precise
+	#~ sudo cp websockets.conf /etc/mosquitto/conf.d/
+#~ endif
 	sudo cp mqtt.conf /etc/mosquitto/conf.d/
 	cat /etc/mosquitto/mosquitto.conf
 	sudo service mosquitto restart
@@ -187,6 +187,7 @@ directories:
 
 travis-deps: deps
 	sudo apt-get -y install libevent-2.0-5
+	pip install git+git://github.com/bibi21000/janitoo@master
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
@@ -210,10 +211,11 @@ docker-tests:
 tests:
 	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
 	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 1883
-ifneq ($(codename),precise)
-	#No websocket for precise
-	netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 9001
-endif
+	$(NOSE) $(NOSEOPTS) tests
+#~ ifneq ($(codename),precise)
+	#~ #No websocket for precise
+	#~ netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded|grep 9001
+#~ endif
 	@echo
 	@echo "Tests for ${MODULENAME} finished."
 
