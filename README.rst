@@ -26,3 +26,7 @@ mqtt is on 1883.
 Documentation
 =============
 You can browse online documentation here : https://bibi21000.github.io/janitoo_mosquitto/.
+
+Tutorial
+========
+You can find a tutorial here : https://bibi21000.github.io/janitoo_tutorial/.
