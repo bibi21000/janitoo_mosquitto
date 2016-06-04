@@ -151,7 +151,7 @@ install: develop
 
 develop:
 	@echo
-	@echo "Installation for developpers of ${MODULENAME} finished."
+	@echo "Installation for developpers of ${MODULENAME} start."
 	lsb_release -a
 	@echo "Install mosquitto for $(distro):$(codename)."
 ifeq ($(distro),Debian)
