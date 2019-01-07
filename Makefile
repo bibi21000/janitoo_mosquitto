@@ -175,7 +175,7 @@ endif
 	cat /etc/mosquitto/mosquitto.conf
 	sudo service mosquitto restart
 	sleep 2
-	cat /var/log/mosquitto/mosquitto.log|grep mosquitto
+	sudo cat /var/log/mosquitto/mosquitto.log|grep mosquitto
 	-netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
 	@echo
 	@echo "Dependencies for ${MODULENAME} finished."
